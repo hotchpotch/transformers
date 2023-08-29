@@ -3184,7 +3184,8 @@ class Trainer:
                 if self.preprocess_logits_for_metrics is not None:
                     logits = self.preprocess_logits_for_metrics(logits, labels)
                 logits = self.accelerator.gather_for_metrics((logits))
-                preds_host = logits if preds_host is None else nested_concat(preds_host, logits, padding_index=-100)
+                # preds_host = logits if preds_host is None else nested_concat(preds_host, logits, padding_index=-100)
+                preds_host = logits
 
             if labels is not None:
                 labels = self.accelerator.gather_for_metrics((labels))
